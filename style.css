@@ -1,0 +1,358 @@
+/* ------------------------------------------------------------
+   Séance de Cinéma — palette & tokens
+   ------------------------------------------------------------ */
+:root {
+    --noir: #12100F;
+    --noir-panel: #1C1815;
+    --rideau: #B3122A;
+    --rideau-vif: #D4283F;
+    --or: #E8B84B;
+    --creme: #F3ECDD;
+    --creme-sourd: #B8AE9E;
+    --ligne: #33291F;
+
+    --font-affiche: "Bebas Neue", sans-serif;
+    --font-texte: "Work Sans", sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--noir);
+    background-image:
+        radial-gradient(ellipse at top, rgba(179, 18, 42, 0.18), transparent 60%);
+    color: var(--creme);
+    font-family: var(--font-texte);
+    line-height: 1.5;
+}
+
+/* ------------------------------------------------------------
+   En-tête : bandeau "marquee" façon fronton de cinéma
+   ------------------------------------------------------------ */
+header {
+    background: var(--rideau);
+    border-bottom: 3px solid var(--or);
+}
+
+.marquee {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0.6rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.marquee__label {
+    margin: 0;
+    font-family: var(--font-affiche);
+    letter-spacing: 0.08em;
+    font-size: 1.1rem;
+    color: var(--creme);
+}
+
+.marquee__bulb {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--or);
+    box-shadow: 0 0 8px 2px rgba(232, 184, 75, 0.7);
+}
+
+/* ------------------------------------------------------------
+   Contenu principal
+   ------------------------------------------------------------ */
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+}
+
+h1 {
+    font-family: var(--font-affiche);
+    font-size: clamp(2.75rem, 6vw, 4.25rem);
+    letter-spacing: 0.03em;
+    margin: 0 0 0.4rem;
+    color: var(--creme);
+    text-shadow: 0 0 24px rgba(212, 40, 63, 0.35);
+}
+
+.lede {
+    margin: 0 0 2.5rem;
+    max-width: 46ch;
+    color: var(--creme-sourd);
+    font-size: 1.05rem;
+}
+
+/* ------------------------------------------------------------
+   Grille de films
+   ------------------------------------------------------------ */
+.films {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.film-card {
+    background: var(--noir-panel);
+    border: 1px solid var(--ligne);
+    border-radius: 10px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.film-card__poster {
+    height: 130px;
+    border-radius: 6px;
+    display: flex;
+    align-items: flex-end;
+    padding: 0.6rem 0.8rem;
+    margin-bottom: 0.4rem;
+}
+
+.film-card__poster--ocean {
+    background: linear-gradient(160deg, #0E3A4C 0%, #145C6B 55%, #1E8A79 100%);
+}
+
+.film-card__poster--sunset {
+    background: linear-gradient(160deg, #7A2B4A 0%, #C1542F 55%, #E8B84B 100%);
+}
+
+.film-card__poster--noir {
+    background: linear-gradient(160deg, #1A1A1F 0%, #35323E 55%, #6B1F2B 100%);
+}
+
+.film-card__genre {
+    font-family: var(--font-affiche);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    background: rgba(18, 16, 15, 0.55);
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    color: var(--creme);
+}
+
+.film-card h2 {
+    font-family: var(--font-affiche);
+    font-size: 1.5rem;
+    letter-spacing: 0.02em;
+    margin: 0;
+    color: var(--creme);
+}
+
+.film-card__meta {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--or);
+    font-weight: 500;
+}
+
+.film-card__synopsis {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--creme-sourd);
+    flex-grow: 1;
+}
+
+.film-card__seances {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.4rem;
+}
+
+.seance input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+}
+
+.seance span {
+    display: inline-block;
+    padding: 0.4rem 0.75rem;
+    border: 1px solid var(--ligne);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--creme-sourd);
+    cursor: pointer;
+    transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+}
+
+.seance span:hover {
+    border-color: var(--or);
+    color: var(--creme);
+}
+
+.seance input:checked+span {
+    background: var(--rideau);
+    border-color: var(--rideau-vif);
+    color: var(--creme);
+}
+
+.seance input:focus-visible+span {
+    outline: 2px solid var(--or);
+    outline-offset: 2px;
+}
+
+/* ------------------------------------------------------------
+   Billet de réservation
+   ------------------------------------------------------------ */
+.ticket__panel {
+    position: relative;
+    background: var(--noir-panel);
+    border: 1px solid var(--ligne);
+    border-radius: 10px;
+    padding: 2rem 2rem 1.75rem;
+}
+
+.ticket__title {
+    font-family: var(--font-affiche);
+    font-size: 1.6rem;
+    letter-spacing: 0.02em;
+    margin: 0 0 1rem;
+    color: var(--creme);
+}
+
+.ticket__perforation {
+    border-top: 2px dashed var(--ligne);
+    margin: 0 0 1.5rem;
+}
+
+.ticket__fields {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem 1.5rem;
+    margin-bottom: 1.75rem;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.field--small {
+    grid-column: span 1;
+}
+
+label {
+    font-size: 0.85rem;
+    color: var(--creme-sourd);
+    font-weight: 500;
+}
+
+fieldset.field {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+fieldset legend {
+    padding: 0;
+    font-size: 0.85rem;
+    color: var(--creme-sourd);
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+}
+
+.radio {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-right: 1.25rem;
+    font-size: 0.95rem;
+    color: var(--creme);
+    font-weight: 400;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"] {
+    background: var(--noir);
+    border: 1px solid var(--ligne);
+    border-radius: 6px;
+    padding: 0.6rem 0.75rem;
+    color: var(--creme);
+    font-family: var(--font-texte);
+    font-size: 0.95rem;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus {
+    outline: none;
+    border-color: var(--or);
+    box-shadow: 0 0 0 3px rgba(232, 184, 75, 0.2);
+}
+
+.ticket__submit {
+    width: 100%;
+    background: var(--rideau);
+    color: var(--creme);
+    border: none;
+    border-radius: 6px;
+    padding: 0.85rem 1.5rem;
+    font-family: var(--font-affiche);
+    font-size: 1.15rem;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.ticket__submit:hover {
+    background: var(--rideau-vif);
+}
+
+.ticket__submit:focus-visible {
+    outline: 2px solid var(--or);
+    outline-offset: 2px;
+}
+
+/* ------------------------------------------------------------
+   Message de confirmation (rempli/animé en JavaScript)
+   ------------------------------------------------------------ */
+.ticket__confirmation {
+    margin: 1.5rem 0 0;
+    padding: 0.9rem 1.1rem;
+    border-radius: 8px;
+    border: 1px solid var(--ligne);
+    background: var(--noir-panel);
+    color: var(--creme-sourd);
+    font-size: 0.9rem;
+}
+
+.ticket__confirmation--succes {
+    border-color: var(--or);
+    background: rgba(232, 184, 75, 0.1);
+    color: var(--creme);
+}
+
+.ticket__confirmation--erreur {
+    border-color: var(--rideau-vif);
+    background: rgba(212, 40, 63, 0.12);
+    color: var(--creme);
+}
+
+/* ------------------------------------------------------------
+   Responsive
+   ------------------------------------------------------------ */
+@media (max-width: 640px) {
+    .ticket__fields {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}

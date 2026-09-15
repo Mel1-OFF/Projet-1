@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Séance de Cinéma — Réservation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="JS/script.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <div class="marquee">
+            <span class="marquee__bulb"></span>
+            <p class="marquee__label">Ce soir à l'affiche</p>
+            <span class="marquee__bulb"></span>
+        </div>
+    </header>
+
+    <main>
+        <h1>Séance de Cinéma</h1>
+        <p class="lede">Découvrez les films à l'affiche, puis complétez vos informations pour réserver.</p>
+
+        <form id="ReservationPlaceCinema" class="ticket" onsubmit="gererReservationCinema(event)">
+
+            <section class="films">
+
+                <article class="film-card" id="filmJumanji" data-titre="Jumanji" data-prix="9.50">
+                    <div class="film-card__poster film-card__poster--ocean">
+                        <span class="film-card__genre">Aventure</span>
+                    </div>
+                    <h2>Jumanji</h2>
+                    <p class="film-card__meta">2h08 · à partir de 10 ans</p>
+                    <p class="film-card__synopsis">Un jeu trop chelou un peu trop réel</p>
+                </article>
+
+                <article class="film-card" id="filmAlibi" data-titre="Alibi.com" data-prix="8.50">
+                    <div class="film-card__poster film-card__poster--sunset">
+                        <span class="film-card__genre">Comédie</span>
+                    </div>
+                    <h2>Alibi.com</h2>
+                    <p class="film-card__meta">1h35 · tout public</p>
+                    <p class="film-card__synopsis">Des gens drôles qui créent une société pour aider d'autres gens
+                        drôles</p>
+                </article>
+
+                <article class="film-card" id="filmConjuring" data-titre="Conjuring" data-prix="9.00">
+                    <div class="film-card__poster film-card__poster--noir">
+                        <span class="film-card__genre">Horreur</span>
+                    </div>
+                    <h2>Conjuring</h2>
+                    <p class="film-card__meta">1h58 · à partir de 12 ans</p>
+                    <p class="film-card__synopsis">À un moment donné elle se prend la porte et c'est drôle (c'est le
+                        seul moment drôle).</p>
+                </article>
+
+            </section>
+
+            <section class="ticket__panel">
+                <h2 class="ticket__title">Vos informations</h2>
+
+                <div class="ticket__perforation" aria-hidden="true"></div>
+
+                <div class="ticket__fields">
+                    <div class="field">
+                        <label for="prenomClient">Prénom</label>
+                        <input type="text" id="prenomClient" name="prenomClient" placeholder="Votre prénom" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="FilmChoisi">Nom du film</label>
+                        <input type="text" id="FilmChoisi" name="NomFilm" placeholder="Nom du film" required>
+                    </div>
+
+                    <div class="field field--small">
+                        <label for="nombrePlaces">Nombre de places</label>
+                        <input type="number" id="nombrePlaces" name="nombrePlaces" min="1" max="10" value="1" required>
+                    </div>
+
+
+                    <button type="submit" class="ticket__submit">Valider la réservation</button>
+            </section>
+
+            <p id="messageReservation" class="ticket__confirmation">
+                Aucune réservation enregistrée.
+            </p>
+
+        </form>
+
+    </main>
+
+    <footer>
+
+    </footer>
+</body>
+
+</html>
