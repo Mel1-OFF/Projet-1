@@ -294,6 +294,26 @@ input[type="number"]:focus {
     box-shadow: 0 0 0 3px rgba(232, 184, 75, 0.2);
 }
 
+select {
+    background: var(--noir);
+    border: 1px solid var(--ligne);
+    border-radius: 6px;
+    padding: 0.6rem 0.75rem;
+    color: var(--creme);
+    font-family: var(--font-texte);
+    font-size: 0.95rem;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+
+select:focus {
+    outline: none;
+    border-color: var(--or);
+    box-shadow: 0 0 0 3px rgba(232, 184, 75, 0.2);
+}
+
+
 .ticket__submit {
     width: 100%;
     background: var(--rideau);
