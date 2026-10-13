@@ -10,10 +10,6 @@ const prenomClient = document.querySelector('#prenomClient');
 let filmChoisiInput = document.querySelector('#FilmChoisi');
 const nombrePlaces = document.querySelector('#nombrePlaces');
 
-// Zones de carte (une par film)
-const carteJumanji = document.querySelector('#filmJumanji');
-const carteAlibi = document.querySelector('#filmAlibi');
-const carteConjuring = document.querySelector('#filmConjuring');
 
 // Zone de confirmation / message
 const messageReservation = document.querySelector('#messageReservation');
@@ -23,21 +19,16 @@ const messageReservation = document.querySelector('#messageReservation');
 // 2. DONNÉES (l'état de l'application)
 // ============================================================
 
-// ----- Tableaux parallèles -----
-let titresReserves = [];
-let prenomsReserves = [];
-let placesReservees = [];
-let prixReserves = [];
-
-// Réhydratation : si rien n'est sauvegardé, getItem renvoie null (falsy) donc []
 let reservations = JSON.parse(localStorage.getItem('reservations')) || [];
 let recherche = '';
 
+// Catalogue des films : un objet par film
 const listeFilms = [
-    { nom: "Jumanji", carte: carteJumanji },
-    { nom: "Alibi", carte: carteAlibi },
-    { nom: "Conjuring", carte: carteConjuring }
+    { titre: "Jumanji", genre: "Aventure", prix: 9.50 },
+    { titre: "Alibi.com", genre: "Comédie", prix: 8.50 },
+    { titre: "Conjuring", genre: "Horreur", prix: 9.00 }
 ];
+
 
 
 // ============================================================
@@ -252,51 +243,3 @@ nombrePlaces.setAttribute('oninput', 'controlerSaisie()');
 prenomClient.value = "Alice";
 
 afficherReservations();
-
-
-// ============================================================
-// 9. ANCIEN CODE (partie 3, mis en commentaire)
-// ============================================================
-
-// const afficherCartesReservations = () => {
-//     let html = '';
-
-//     for (let i = 0; i < titresReserves.length; i++) {
-//         // DESTRUCTURATION : on extrait les 4 infos de la réservation i
-//         const [titre, prenom, places, prix] = [
-//             titresReserves[i], prenomsReserves[i], placesReservees[i], prixReserves[i]
-//         ];
-
-//         const sousTotal = places * prix;
-
-//         let total;
-//         if (places >= 5) {
-//             total = sousTotal - (sousTotal * 0.20);
-//         } else {
-//             total = sousTotal;
-//         }
-//         total = total.toFixed(2);
-
-//         const badgePlaces = places >= 5 ? 'Groupe (-20%)' : 'Individuel';
-
-//         let categorie;
-//         switch (titre) {
-//             case 'Jumanji': categorie = 'Aventure'; break;
-//             case 'Alibi.com': categorie = 'Comédie'; break;
-//             case 'Conjuring': categorie = 'Horreur'; break;
-//             default: categorie = 'Film';
-//         }
-
-//         html += `
-//             <article class="film-card">
-//                 <span class="film-card__genre">${categorie}</span>
-//                 <h2>${titre}</h2>
-//                 <p class="film-card__meta">${badgePlaces} · ${places} place(s)</p>
-//                <p class="film-card__synopsis">Réservé par ${prenom} — Total : ${total} €</p>
-//                 <button type="button" class="ticket__submit" onclick="supprimerReservation(${i})">Supprimer</button>
-//             </article>
-//         `;
-//     }
-
-//     recapContainer.innerHTML = `<h2 class="ticket__title">Réservations enregistrées</h2><div class="films">${html}</div>`;
-// };
